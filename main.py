@@ -13,6 +13,12 @@ def fazer_palpite_computador(palpites_computador):
     palpites_computador.append(palpite)
     return palpite
 
+def fazer_palpite(nome_jogador, palpites_jogador, palpites_computador):
+    if nome_jogador == "COMPUTADOR":
+        return fazer_palpite_computador(palpites_computador)
+    else:
+        return fazer_palpite_humano(palpites_jogador)
+
 def verificar_palpite(palpite, numero_secreto):
     if palpite == numero_secreto:
         return True
@@ -22,6 +28,13 @@ def verificar_palpite(palpite, numero_secreto):
         print("O número é menor que", palpite)
     return False
 
+def reiniciar_jogo():
+    jogar_novamente = input("\nDeseja jogar novamente? (s/n): ").lower()
+    if jogar_novamente == 's':
+        return True
+    else:
+        jogar_novamente == 'n'
+        return False
 
 while True:
   numero_secreto = random.randint(1,100)
@@ -37,34 +50,23 @@ while True:
   while True:
       if comeca_primeiro == nome_jogador:
           print(f"\n----------------------- Sua Vez {nome_jogador} -----------------------")
-          palpite = fazer_palpite_humano(palpites_jogador)
+          palpite = fazer_palpite(nome_jogador, palpites_jogador, palpites_computador)
           if verificar_palpite(palpite, numero_secreto):
               print(f"\nParabéns {nome_jogador}, você acertou! O número secreto era: {numero_secreto}")
               break
       else:
           print("\n----------------------- Vez do Computador -----------------------")
-          palpite = fazer_palpite_computador(palpites_computador)
+          palpite = fazer_palpite("COMPUTADOR", palpites_jogador, palpites_computador)
           if verificar_palpite(palpite, numero_secreto):
               print(f"\nA máquina venceu o jogo. O número secreto era: {numero_secreto}")
               break
 
-      if comeca_primeiro != nome_jogador:
-          print(f"\n----------------------- Sua Vez {nome_jogador} -----------------------")
-          palpite = fazer_palpite_humano(palpites_jogador)
-          if verificar_palpite(palpite, numero_secreto):
-              print(f"\nParabéns {nome_jogador}, você acertou! O número secreto era: {numero_secreto}")
-              break
-      else:
-          print("----------------------- Vez do Computador -----------------------")
-          palpite = fazer_palpite_computador(palpites_computador)
-          if verificar_palpite(palpite, numero_secreto):
-              print(f"\nA máquina venceu o jogo. O número secreto era: {numero_secreto}")
-              break
+      #operador ternário para alterar o valor de começa_primeiro para o computador, alterando a rodada
+      comeca_primeiro = "COMPUTADOR" if comeca_primeiro == nome_jogador else nome_jogador
 
   print(f"\nPalpites do Jogador {nome_jogador}: {palpites_jogador}")
   print(f"Palpites do Computador: {palpites_computador}")
 
-  jogar_novamente = input("\nDeseja jogar novamente? (s/n): ").lower()
-  if jogar_novamente != 's':
+  if not reiniciar_jogo():
     print("\nObrigado por jogar! Até a próxima.")
     break
