@@ -4,7 +4,7 @@ def test_quem_comeca(monkeypatch):
     # Simulando entrada do jogador
     nome_jogador = "Jogador"  # Simulando entrada do jogador
 
-    # Definindo a entrada simulada
+    # Definindo a entrada simulada/lambda cria um nome que seria digitado no input
     monkeypatch.setattr('builtins.input', lambda _: nome_jogador)
 
     assert quem_comeca(nome_jogador) in [nome_jogador, "COMPUTADOR"]
