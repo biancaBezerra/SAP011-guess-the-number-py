@@ -36,37 +36,39 @@ def reiniciar_jogo():
         jogar_novamente == 'n'
         return False
 
-while True:
-  numero_secreto = random.randint(1,100)
-  palpites_jogador = []
-  palpites_computador = []
-
-  print("Bem vindo ao Jogo ADIVINHE O NÚMERO!")
-  nome_jogador = input("\nPor favor, digite seu nome: ").upper()
-
-  comeca_primeiro = quem_comeca(nome_jogador)
-  print(f"\nSorteado para começa primeiro: {comeca_primeiro}")
+if __name__ == "__main__":
 
   while True:
-      if comeca_primeiro == nome_jogador:
-          print(f"\n----------------------- Sua Vez {nome_jogador} -----------------------")
-          palpite = fazer_palpite(nome_jogador, palpites_jogador, palpites_computador)
-          if verificar_palpite(palpite, numero_secreto):
-              print(f"\nParabéns {nome_jogador}, você acertou! O número secreto era: {numero_secreto}")
-              break
-      else:
-          print("\n----------------------- Vez do Computador -----------------------")
-          palpite = fazer_palpite("COMPUTADOR", palpites_jogador, palpites_computador)
-          if verificar_palpite(palpite, numero_secreto):
-              print(f"\nA máquina venceu o jogo. O número secreto era: {numero_secreto}")
-              break
+    numero_secreto = random.randint(1,100)
+    palpites_jogador = []
+    palpites_computador = []
 
-      #operador ternário para alterar o valor de começa_primeiro para o computador, alterando a rodada
-      comeca_primeiro = "COMPUTADOR" if comeca_primeiro == nome_jogador else nome_jogador
+    print("Bem vindo ao Jogo ADIVINHE O NÚMERO!")
+    nome_jogador = input("\nPor favor, digite seu nome: ").upper()
 
-  print(f"\nPalpites do Jogador {nome_jogador}: {palpites_jogador}")
-  print(f"Palpites do Computador: {palpites_computador}")
+    comeca_primeiro = quem_comeca(nome_jogador)
+    print(f"\nSorteado para começa primeiro: {comeca_primeiro}")
 
-  if not reiniciar_jogo():
-    print("\nObrigado por jogar! Até a próxima.")
-    break
+    while True:
+        if comeca_primeiro == nome_jogador:
+            print(f"\n----------------------- Sua Vez {nome_jogador} -----------------------")
+            palpite = fazer_palpite(nome_jogador, palpites_jogador, palpites_computador)
+            if verificar_palpite(palpite, numero_secreto):
+                print(f"\nParabéns {nome_jogador}, você acertou! O número secreto era: {numero_secreto}")
+                break
+        else:
+            print("\n----------------------- Vez do Computador -----------------------")
+            palpite = fazer_palpite("COMPUTADOR", palpites_jogador, palpites_computador)
+            if verificar_palpite(palpite, numero_secreto):
+                print(f"\nA máquina venceu o jogo. O número secreto era: {numero_secreto}")
+                break
+
+        #operador ternário para alterar o valor de começa_primeiro para o computador, alterando a rodada
+        comeca_primeiro = "COMPUTADOR" if comeca_primeiro == nome_jogador else nome_jogador
+
+    print(f"\nPalpites do Jogador {nome_jogador}: {palpites_jogador}")
+    print(f"Palpites do Computador: {palpites_computador}")
+
+    if not reiniciar_jogo():
+      print("\nObrigado por jogar! Até a próxima.")
+      break
