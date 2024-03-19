@@ -36,6 +36,7 @@ def reiniciar_jogo():
         jogar_novamente == 'n'
         return False
 
+#verifica se o nome do script atua é main e chama o while
 if __name__ == "__main__":
 
   while True:
