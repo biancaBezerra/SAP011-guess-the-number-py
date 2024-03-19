@@ -1,4 +1,4 @@
-from main import fazer_palpite_computador, quem_comeca, fazer_palpite_humano, fazer_palpite, verificar_palpite
+from main import fazer_palpite_computador, quem_comeca, fazer_palpite_humano, fazer_palpite, verificar_palpite, reiniciar_jogo
 
 def test_quem_comeca(monkeypatch):
     # Simulando entrada do jogador
@@ -50,4 +50,16 @@ def test_verificar_palpite():
 
     #caso o palpite seja maior que o numero secreto
     assert verificar_palpite(50,40) == False
+
+def test_reiniciar_jogo_sim(monkeypatch):
+    #caso o jogador queira jogar novamente
+    jogar_novamente = "s"
+    monkeypatch.setattr('builtins.input', lambda _: jogar_novamente)
+    assert reiniciar_jogo() == True
+
+def test_reiniciar_jogo_nao(monkeypatch):
+    #caso o jogador queira parar o jogo
+    jogar_novamente = "n"
+    monkeypatch.setattr('builtins.input', lambda _: jogar_novamente)
+    assert reiniciar_jogo() == False
 
