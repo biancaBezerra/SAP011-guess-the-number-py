@@ -1,4 +1,4 @@
-from main import fazer_palpite_computador, quem_comeca
+from main import fazer_palpite_computador, quem_comeca, fazer_palpite_humano
 
 def test_quem_comeca(monkeypatch):
     # Simulando entrada do jogador
@@ -8,6 +8,12 @@ def test_quem_comeca(monkeypatch):
     monkeypatch.setattr('builtins.input', lambda _: nome_jogador)
 
     assert quem_comeca(nome_jogador) in [nome_jogador, "COMPUTADOR"]
+
+def test_fazer_palpite_humano(monkeypatch):
+    palpites_jogador = []
+    entrada = "10"
+    monkeypatch.setattr('builtins.input', lambda _: entrada)
+    assert fazer_palpite_humano(palpites_jogador) == int (entrada)
 
 def test_fazer_palpite_computador():
     palpites_computador = []
