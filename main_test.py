@@ -1,3 +1,5 @@
+import main
+
 from main import fazer_palpite_computador, quem_comeca, fazer_palpite_humano, fazer_palpite, verificar_palpite, reiniciar_jogo
 
 def test_quem_comeca(monkeypatch):
