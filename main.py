@@ -4,9 +4,13 @@ def quem_comeca(nome_jogador):
     return random.choice([nome_jogador, "COMPUTADOR"])
 
 def fazer_palpite_humano(palpites_jogador):
-    palpite = int(input("Insira um valor entre 1 e 100: "))
-    palpites_jogador.append(palpite)
-    return palpite
+    while True:
+      palpite = int(input("Insira um valor entre 1 e 100: "))
+      if 1 <= palpite <= 100:
+        palpites_jogador.append(palpite)
+        return palpite
+      else:
+          print("Por favor, insira um número dentro do intervalo de 1 a 100.")
 
 def fazer_palpite_computador(palpites_computador):
     palpite = random.randint(1,100)
@@ -36,7 +40,7 @@ def reiniciar_jogo():
         jogar_novamente == 'n'
         return False
 
-#verifica se o nome do script atua é main e chama o while
+#verifica se o nome do script atual é main e chama o while
 if __name__ == "__main__":
 
   while True:
@@ -47,6 +51,7 @@ if __name__ == "__main__":
     print("Bem vindo ao Jogo ADIVINHE O NÚMERO!")
     nome_jogador = input("\nPor favor, digite seu nome: ").upper()
 
+    #armazena retorno da função quem começa e printa o sorteado para começar
     comeca_primeiro = quem_comeca(nome_jogador)
     print(f"\nSorteado para começa primeiro: {comeca_primeiro}")
 
