@@ -1,6 +1,6 @@
 # Guess The Number - Python 🐍
 
-Jogo simples em que você tenta adivinhar um número secreto entre 1 e 100. Você pode jogar contra o computador, revesando a cada round até que o número secreto seja inserido. Não há limites de round, quando o número secreto for descoberto será printado no terminal o número, suas tentativas e as tentativas da máquina. Voce ainda pode escolher se quer reiniciar a partida ou finalizar o jogo.
+Jogo simples em que você tenta adivinhar um número secreto entre 1 e 100. Você pode jogar contra o computador, revezando a cada round até que o número secreto seja inserido. Não há limites de round, quando o número secreto for descoberto será printado no terminal o número, suas tentativas e as tentativas da máquina. Voce ainda pode escolher se quer reiniciar a partida ou finalizar o jogo.
 
 ## Como Jogar
 
@@ -18,7 +18,9 @@ Jogo simples em que você tenta adivinhar um número secreto entre 1 e 100. Voc�
 
 ## Demo 🎲🎮
 
-
+<p align="center">
+  <img style = 'border-radius: 20px' style = 'object-fit: cover;' width = 600 height = 200 src="demo.gif" alt="Demonstração do jogo" />
+</p>
 
 ## Como Contribuir
 
