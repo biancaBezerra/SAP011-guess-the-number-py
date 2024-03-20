@@ -19,7 +19,7 @@ Jogo simples em que você tenta adivinhar um número secreto entre 1 e 100. Voc�
 ## Demo 🎲🎮
 
 <p align="center">
-  <img style = 'border-radius: 20px' style = 'object-fit: cover;' width = 600 height = 200 src="demo.gif" alt="Demonstração do jogo" />
+  <img src="demo.gif" alt="Demonstração do jogo" />
 </p>
 
 ## Como Contribuir
