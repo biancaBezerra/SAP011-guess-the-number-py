@@ -13,8 +13,9 @@ def test_quem_comeca(monkeypatch):
 
 def test_fazer_palpite_humano(monkeypatch):
     palpites_jogador = []
-    entrada = "10"
+    entrada = 10
     monkeypatch.setattr('builtins.input', lambda _: entrada)
+    assert 1 <= entrada <= 100
     assert fazer_palpite_humano(palpites_jogador) == int (entrada)
 
 def test_fazer_palpite_computador():
