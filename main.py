@@ -1,16 +1,17 @@
 import random
 
 def quem_comeca(nome_jogador):
+    #isso é uma tupla(tuple)
     return random.choice([nome_jogador, "COMPUTADOR"])
 
 def fazer_palpite_humano(palpites_jogador):
     while True:
-      palpite = int(input("Insira um valor entre 1 e 100: "))
-      if 1 <= palpite <= 100:
-        palpites_jogador.append(palpite)
-        return palpite
-      else:
-          print("Por favor, insira um número dentro do intervalo de 1 a 100.")
+        palpite = int(input("Insira um valor entre 1 e 100: "))
+        if 1 <= palpite <= 100:
+            palpites_jogador.append(palpite)
+            return palpite
+        else:
+            print("Por favor, insira um número dentro do intervalo de 1 a 100.")
 
 def fazer_palpite_computador(palpites_computador):
     palpite = random.randint(1,100)
@@ -43,38 +44,39 @@ def reiniciar_jogo():
 #verifica se o nome do script atual é main e chama o while
 if __name__ == "__main__":
 
-  while True:
-    numero_secreto = random.randint(1,100)
-    palpites_jogador = []
-    palpites_computador = []
-
-    print("Bem vindo ao Jogo ADIVINHE O NÚMERO!")
-    nome_jogador = input("\nPor favor, digite seu nome: ").upper()
-
-    #armazena retorno da função quem começa e printa o sorteado para começar
-    comeca_primeiro = quem_comeca(nome_jogador)
-    print(f"\nSorteado para começa primeiro: {comeca_primeiro}")
-
     while True:
-        if comeca_primeiro == nome_jogador:
-            print(f"\n----------------------- Sua Vez {nome_jogador} -----------------------")
-            palpite = fazer_palpite(nome_jogador, palpites_jogador, palpites_computador)
-            if verificar_palpite(palpite, numero_secreto):
-                print(f"\nParabéns {nome_jogador}, você acertou! O número secreto era: {numero_secreto}")
-                break
-        else:
-            print("\n----------------------- Vez do Computador -----------------------")
-            palpite = fazer_palpite("COMPUTADOR", palpites_jogador, palpites_computador)
-            if verificar_palpite(palpite, numero_secreto):
-                print(f"\nA máquina venceu o jogo. O número secreto era: {numero_secreto}")
-                break
+        numero_secreto = random.randint(1,100)
+        palpites_jogador = []
+        palpites_computador = []
 
-        #operador ternário para alterar o valor de começa_primeiro para o computador, alterando a rodada
-        comeca_primeiro = "COMPUTADOR" if comeca_primeiro == nome_jogador else nome_jogador
+        print("Bem vindo ao Jogo ADIVINHE O NÚMERO!")
+        nome_jogador = input("\nPor favor, digite seu nome: ").upper()
 
-    print(f"\nPalpites do Jogador {nome_jogador}: {palpites_jogador}")
-    print(f"Palpites do Computador: {palpites_computador}")
+        #armazena retorno da função quem começa e printa o sorteado para começar
+        comeca_primeiro = quem_comeca(nome_jogador)
+        print(f"\nSorteado para começa primeiro: {comeca_primeiro}")
 
-    if not reiniciar_jogo():
-      print("\nObrigado por jogar! Até a próxima.")
-      break
+        while True:
+            if comeca_primeiro == nome_jogador:
+                print(f"\n----------------------- Sua Vez {nome_jogador} -----------------------")
+                palpite = fazer_palpite(nome_jogador, palpites_jogador, palpites_computador)
+                if verificar_palpite(palpite, numero_secreto):
+                    print(f"\nParabéns {nome_jogador}, você acertou! O número secreto era: {numero_secreto}")
+                    break
+            else:
+                print("\n----------------------- Vez do Computador -----------------------")
+                palpite = fazer_palpite("COMPUTADOR", palpites_jogador, palpites_computador)
+                if verificar_palpite(palpite, numero_secreto):
+                    print(f"\nA máquina venceu o jogo. O número secreto era: {numero_secreto}")
+                    break
+
+            #operador ternário para alterar o valor de começa_primeiro para o computador, alterando a rodada
+            comeca_primeiro = "COMPUTADOR" if comeca_primeiro == nome_jogador else nome_jogador
+            #valor_se_verdadeiro           if      condição                   else valor_se_falso
+
+        print(f"\nPalpites do Jogador {nome_jogador}: {palpites_jogador}")
+        print(f"Palpites do Computador: {palpites_computador}")
+
+        if not reiniciar_jogo():
+            print("\nObrigado por jogar! Até a próxima.")
+            break
