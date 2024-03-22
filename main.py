@@ -1,45 +1,62 @@
+"""
+Este módulo contém o jogo Guess The Number
+Onde o jogador tenta adivinha um numero
+"""
 import random
 
+
 def quem_comeca(nome_jogador):
+    """
+    Escolhe através de sorteio quem começa o jogo.
+    """
     #isso é uma tupla(tuple)
     return random.choice([nome_jogador, "COMPUTADOR"])
 
-def fazer_palpite_humano(palpites_jogador):
+def palpite_humano(palpites_jogador):
+    """
+    Função para obter um palpite de um jogador humano.
+    """
     while True:
         palpite = int(input("Insira um valor entre 1 e 100: "))
         if 1 <= palpite <= 100:
             palpites_jogador.append(palpite)
             return palpite
-        else:
-            print("Por favor, insira um número dentro do intervalo de 1 a 100.")
+        print("Por favor, insira um número dentro do intervalo de 1 a 100.")
 
-def fazer_palpite_computador(palpites_computador):
+def palpite_computador(palpites_computador):
+    """
+    Função para obter um palpite do computador.
+    """
     palpite = random.randint(1,100)
     palpites_computador.append(palpite)
     return palpite
 
 def fazer_palpite(nome_jogador, palpites_jogador, palpites_computador):
+    """
+    Função para fazer um palpite, dependendo do jogador.
+    """
     if nome_jogador == "COMPUTADOR":
-        return fazer_palpite_computador(palpites_computador)
-    else:
-        return fazer_palpite_humano(palpites_jogador)
+        return palpite_computador(palpites_computador)
+    return palpite_humano(palpites_jogador)
 
 def verificar_palpite(palpite, numero_secreto):
+    """
+    Função para verificar o palpite com o número secreto.
+    """
     if palpite == numero_secreto:
         return True
-    elif palpite < numero_secreto:
+    if palpite < numero_secreto:
         print("O número é maior que", palpite)
     else:
         print("O número é menor que", palpite)
     return False
 
 def reiniciar_jogo():
+    """
+    Função para perguntar ao jogador se deseja jogar novamente.
+    """
     jogar_novamente = input("\nDeseja jogar novamente? (s/n): ").lower()
-    if jogar_novamente == 's':
-        return True
-    else:
-        jogar_novamente == 'n'
-        return False
+    return jogar_novamente == 's'
 
 #verifica se o nome do script atual é main e chama o while
 if __name__ == "__main__":
@@ -53,11 +70,11 @@ if __name__ == "__main__":
         nome_jogador = input("\nPor favor, digite seu nome: ").upper()
 
         #armazena retorno da função quem começa e printa o sorteado para começar
-        comeca_primeiro = quem_comeca(nome_jogador)
-        print(f"\nSorteado para começa primeiro: {comeca_primeiro}")
+        primeiro_a_jogar = quem_comeca(nome_jogador)
+        print(f"\nSorteado para começa primeiro: {primeiro_a_jogar}")
 
         while True:
-            if comeca_primeiro == nome_jogador:
+            if primeiro_a_jogar == nome_jogador:
                 print(f"\n----------------------- Sua Vez {nome_jogador} -----------------------")
                 palpite = fazer_palpite(nome_jogador, palpites_jogador, palpites_computador)
                 if verificar_palpite(palpite, numero_secreto):
@@ -70,8 +87,9 @@ if __name__ == "__main__":
                     print(f"\nA máquina venceu o jogo. O número secreto era: {numero_secreto}")
                     break
 
-            #operador ternário para alterar o valor de começa_primeiro para o computador, alterando a rodada
-            comeca_primeiro = "COMPUTADOR" if comeca_primeiro == nome_jogador else nome_jogador
+            #operador ternário para alterar o valor de começa_primeiro para o
+            #computador, alterando a rodada
+            primeiro_a_jogar = "COMPUTADOR" if primeiro_a_jogar == nome_jogador else nome_jogador
             #valor_se_verdadeiro           if      condição                   else valor_se_falso
 
         print(f"\nPalpites do Jogador {nome_jogador}: {palpites_jogador}")
