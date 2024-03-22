@@ -1,6 +1,6 @@
 import main
 
-from main import fazer_palpite_computador, quem_comeca, fazer_palpite_humano, fazer_palpite, verificar_palpite, reiniciar_jogo
+from main import palpite_computador, quem_comeca, palpite_humano, fazer_palpite, verificar_palpite, reiniciar_jogo
 
 def test_quem_comeca(monkeypatch):
     # Simulando entrada do jogador
@@ -11,16 +11,16 @@ def test_quem_comeca(monkeypatch):
 
     assert quem_comeca(nome_jogador) in [nome_jogador, "COMPUTADOR"]
 
-def test_fazer_palpite_humano(monkeypatch):
+def test_palpite_humano(monkeypatch):
     palpites_jogador = []
     entrada = 10
     monkeypatch.setattr('builtins.input', lambda _: entrada)
     assert 1 <= entrada <= 100
-    assert fazer_palpite_humano(palpites_jogador) == int (entrada)
+    assert palpite_humano(palpites_jogador) == int (entrada)
 
-def test_fazer_palpite_computador():
+def test_palpite_computador():
     palpites_computador = []
-    palpite = fazer_palpite_computador(palpites_computador)
+    palpite = palpite_computador(palpites_computador)
     
     # Verifica se o palpite está dentro do intervalo de 1 a 100
     assert 1 <= palpite <= 100
@@ -43,6 +43,7 @@ def test_fazer_palpite(monkeypatch):
     palpite_computador = fazer_palpite("COMPUTADOR", palpites_jogador, palpites_computador)
     assert 1 <= palpite_computador <= 100
     assert palpite_computador in palpites_computador
+
 
 def test_verificar_palpite():
     #caso o palpite seja igual ao numero secreto retorna true
