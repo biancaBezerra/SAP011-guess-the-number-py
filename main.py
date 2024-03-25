@@ -58,6 +58,7 @@ def reiniciar_jogo():
     jogar_novamente = input("\nDeseja jogar novamente? (s/n): ").lower()
     return jogar_novamente == 's'
 
+
 #verifica se o nome do script atual é main e chama o while
 if __name__ == "__main__":
 
