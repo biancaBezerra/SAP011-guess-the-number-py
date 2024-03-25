@@ -10,7 +10,7 @@ def quem_comeca(nome_jogador):
     Escolhe através de sorteio quem começa o jogo.
     """
     #isso é uma tupla(tuple)
-    return random.choice([nome_jogador, "COMPUTADOR"])
+    return random.choice((nome_jogador, "COMPUTADOR"))
 
 def palpite_humano(palpites_jogador):
     """
@@ -59,9 +59,10 @@ def reiniciar_jogo():
     return jogar_novamente == 's'
 
 
-#verifica se o nome do script atual é main e chama o while
-if __name__ == "__main__":
-
+def main():
+    """
+    Função principal para iniciar o jogo
+    """
     while True:
         numero_secreto = random.randint(1,100)
         palpites_jogador = []
@@ -72,10 +73,11 @@ if __name__ == "__main__":
 
         #armazena retorno da função quem começa e printa o sorteado para começar
         primeiro_a_jogar = quem_comeca(nome_jogador)
+        turno_computador = primeiro_a_jogar == "COMPUTADOR"
         print(f"\nSorteado para começa primeiro: {primeiro_a_jogar}")
 
         while True:
-            if primeiro_a_jogar == nome_jogador:
+            if not turno_computador:
                 print(f"\n----------------------- Sua Vez {nome_jogador} -----------------------")
                 palpite = fazer_palpite(nome_jogador, palpites_jogador, palpites_computador)
                 if verificar_palpite(palpite, numero_secreto):
@@ -88,10 +90,8 @@ if __name__ == "__main__":
                     print(f"\nA máquina venceu o jogo. O número secreto era: {numero_secreto}")
                     break
 
-            #operador ternário para alterar o valor de começa_primeiro para o
             #computador, alterando a rodada
-            primeiro_a_jogar = "COMPUTADOR" if primeiro_a_jogar == nome_jogador else nome_jogador
-            #valor_se_verdadeiro           if      condição                   else valor_se_falso
+            turno_computador = not turno_computador
 
         print(f"\nPalpites do Jogador {nome_jogador}: {palpites_jogador}")
         print(f"Palpites do Computador: {palpites_computador}")
@@ -99,3 +99,7 @@ if __name__ == "__main__":
         if not reiniciar_jogo():
             print("\nObrigado por jogar! Até a próxima.")
             break
+        
+#verifica se o nome do script atual é main e chama o while
+if __name__ == "__main__":
+    main()
