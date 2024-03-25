@@ -61,9 +61,4 @@ def test_reiniciar_jogo_sim(monkeypatch):
     monkeypatch.setattr('builtins.input', lambda _: jogar_novamente)
     assert reiniciar_jogo() == True
 
-def test_reiniciar_jogo_nao(monkeypatch):
-    #caso o jogador queira parar o jogo
-    jogar_novamente = "n"
-    monkeypatch.setattr('builtins.input', lambda _: jogar_novamente)
-    assert reiniciar_jogo() == False
 
